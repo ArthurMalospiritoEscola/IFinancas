@@ -1,9 +1,16 @@
+using IFinancas.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("appsettings.Local.json", optional:true,reloadOnChange: true);
+
+//Configurando context
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-builder.Configuration.AddJsonFile("appsetings.Local.json", optional:true,reloadOnChange: true);
 
 var app = builder.Build();
 
