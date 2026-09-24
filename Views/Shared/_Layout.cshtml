@@ -17,26 +17,36 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style="background-color:#137224">
-            <div class="container-fluid">
-                <a class="navbar-brand title" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/images/ifmt-logo.png" alt="Bootstrap" width="30" height="40">
-                    <span class="fs-3">inanças</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="navbar-brand title ms-2" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/ifmt-logo.png" alt="IF Logo" width="30" height="40">
+                        <span class="fs-3">IFinanças</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item d-flex align-items-center me-3">
+                        <span class="text-white">Olá, <strong>@User.Identity.Name</strong>!</span>
+                    </li>
+                    <li class="nav-item me-3">
+                        <form asp-controller="Usuario" asp-action="Logout" method="post" class="d-inline">
+                            <button type="submit" class="nav-link btn btn-link border-0 p-0"><span class="hover-underline sair">Sair</span></button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-controller="Usuario" asp-action="Login">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-controller="Usuario" asp-action="Registro">Cadastrar</a>
+                    </li>
+                }
+            </ul>
         </nav>
     </header>
     <div class="container">

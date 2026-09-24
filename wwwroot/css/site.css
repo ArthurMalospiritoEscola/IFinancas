@@ -33,6 +33,15 @@ body {
 
 /*Conexão da font-family*/
 
+.h1,h2,h3,h4,h5,h6 {
+  /*Mudar a font-family*/
+
+  font-family: "Valley Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
 .title {
   /*Mudar a font-family*/
 
@@ -40,4 +49,16 @@ body {
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
+}
+
+/*Detalhes do botão Sair*/
+
+.hover-underline:hover {
+  text-decoration: underline;
+}
+
+.sair {
+  color: rgb(255, 100, 100);
+  font-size: 15pt;
+  font-weight: 500;
 }
